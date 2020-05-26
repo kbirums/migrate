@@ -1,6 +1,6 @@
 <head>
 <style>
-/*/ test /*/
+/* test */
 input {
   position: absolute;
   opacity: 0;
@@ -64,7 +64,6 @@ input {
     }
   }
 }
-
 // :checked
 input:checked {
   + .tab-label {
@@ -78,6 +77,7 @@ input:checked {
     padding: 1em;
   }
 }
+
 #virsrakstu_info {
     border-bottom: 1px solid #7b7b7b;
     display: inline-flex;
@@ -952,7 +952,7 @@ input:checked {
 <div class="test">
 <div class="row">
   <div class="col">
-    <h2>Open <b>multiple</b></h2>
+    <h2>Open <b>mex</b></h2>
     <div class="tabs">
       <div class="tab">
         <input type="checkbox" id="chck1">
@@ -976,26 +976,5 @@ input:checked {
 
 </body>
 <footer>
-  <script>
-  var acc = document.getElementsByClassName("accordion");
-    var i;
-    for (i = 0; i < acc.length; i++) {
-      acc[i].addEventListener("click", function() {
 
-      	var active = document.getElementsByClassName("accordion active")[0];
-        if (active) {
-        	active.classList.remove("active");
-          var p_panel = active.nextElementSibling;
-          p_panel.style.maxHeight = null;
-        }
-        this.classList.toggle("active");
-        var a_panel = this.nextElementSibling;
-        if (a_panel.style.maxHeight) {
-          a_panel.style.maxHeight = null;
-        } else {
-          a_panel.style.maxHeight = a_panel.scrollHeight + "px";
-        }
-      });
-    }
-  </script>
   </footer>
