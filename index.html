@@ -1,16 +1,84 @@
 <head>
-
 <style>
-h4
-  {
-    background: #fbc900;
-    width: 10px;
-    padding: 10;
-    height: 21px;
-    font-size: 20px;
-    font-weight: 300;
-    white-space: nowrap;
+/*/ test /*/
+input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
 }
+// Layout
+.row {
+  display:flex;
+  .col {
+    flex:1;
+    &:last-child {
+      margin-left: 1em;
+    }
+  }
+}
+/* Accordion styles */
+.tabs {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 4px -2px rgba(0,0,0,0.5);
+}
+.tab {
+  width: 100%;
+  color: white;
+  overflow: hidden;
+  &-label {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    background: $midnight;
+    font-weight: bold;
+    cursor: pointer;
+    /* Icon */
+    &:hover {
+      background: darken($midnight, 10%);
+    }
+    &::after {
+      content: "\276F";
+      width: 1em;
+      height: 1em;
+      text-align: center;
+      transition: all .35s;
+    }
+  }
+  &-content {
+    max-height: 0;
+    padding: 0 1em;
+    color: $midnight;
+    background: white;
+    transition: all .35s;
+  }
+  &-close {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1em;
+    font-size: 0.75em;
+    background: $midnight;
+    cursor: pointer;
+    &:hover {
+      background: darken($midnight, 10%);
+    }
+  }
+}
+
+// :checked
+input:checked {
+  + .tab-label {
+    background: darken($midnight, 10%);
+    &::after {
+      transform: rotate(90deg);
+    }
+  }
+  ~ .tab-content {
+    max-height: 100vh;
+    padding: 1em;
+  }
+}
+
 .accordion {
     margin-top: 2px;
     cursor: pointer;
@@ -101,12 +169,9 @@ h4
     padding: 6px 20px;
     white-space: nowrap;
 }
-subkategorija{
+.subkategorija{
     padding: 0;
-    font-weight: 200;
     margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 5px;
 }
 .izmeru_virsraksti {
     display: inline-flex;
@@ -133,8 +198,8 @@ subkategorija{
 </head>
 <body>
   <div class="panel" id="one-panel">
-    <div class="panel-title"><h3>Reklāma internetā</h3></div>
-            <h4>Izvēlies:</h4>
+    <div class="panel-title"><div>Reklāma internetā</div></div>
+            <div>Izvēlies:</div>
             <ul>
               <li>Digitālos standarta risinājumus (baneri, reklāmraksti)</li>
               <li>Īpaši jums izstrādātus digitālos reklāmas projektus</li>
@@ -142,21 +207,21 @@ subkategorija{
               <li>Reklāmu drukātajos medijos</li>
               <li>Kombinētos risinājumus</li>
             </ul><br>
-                <h4>Kāpēc izvēlēties reklāmu internetā?</h4>
+                <div>Kāpēc izvēlēties reklāmu internetā?</div>
               <ul>
                 <li>Internets ir vieta, kur visvairāk cilvēku pavada visvairāk laika.</li>
                 <li>Internetā tu precīzi zini, cik daudz cilvēku redz tavu reklāmu.</li>
                 <li>Nevienam citam medijam nav pieejami tik precīzi auditorijas mērījumi.</li>
                 <li>Interneta ziņu portāli ir oriģināli radīts saturs ar iespēju nodrošināt brand safty.</li>
               </ul><br>
-              <h4>Kāpēc izvēlēties kombinētos risinājumus?</h4>
+              <div>Kāpēc izvēlēties kombinētos risinājumus?</div>
             <ul>
               <li>Iespēja uzrunāt dažādu auditoriju.</li>
               <li>Precīza jūs interesējošas auditorijas atlase.</li>
               <li>Dažādi vēstījumi dažādās vidēs var kalpot vienota mērķa sasniegšanai.</li>
               <li>Plašas radošās iespējas.</li>
             </ul><br>
-        <div id="subkad_virs"><h3 class="subkategorija">Mobile baneri</h3>
+        <div id="subkad_virs"><div class="subkategorija">Mobile baneri</div>
           </div>
             <div class="izmeru_akordeons">
               <div id="virsrakstu_info">
@@ -288,7 +353,7 @@ subkategorija{
                         </div>
                       </div>
                 </div>
-        <div id="subkad_virs"><h3 class="subkategorija">Standarta baneri Desktop</h3>
+        <div id="subkad_virs"><div class="subkategorija">Standarta baneri Desktop</div>
         </div>
             <div class="izmeru_akordeons">
               <div id="virsrakstu_info">
@@ -499,7 +564,7 @@ subkategorija{
                       </div>
                 </div>
         </div>
-        <div id="subkad_virs"><h3 class="subkategorija">Nestandarta baneri Desktop</h3>
+        <div id="subkad_virs"><div class="subkategorija">Nestandarta baneri Desktop</div>
         </div>
             <div class="izmeru_akordeons">
               <div id="virsrakstu_info">
@@ -747,7 +812,7 @@ subkategorija{
                       </div>
                 </div>
         </div>
-        <div id="subkad_virs"><h3 class="subkategorija">Apvienotās baneru pozīcijas (Desktop + Mobile)</h3>
+        <div id="subkad_virs"><div class="subkategorija">Apvienotās baneru pozīcijas (Desktop + Mobile)</div>
         </div>
             <div class="izmeru_akordeons">
               <div id="virsrakstu_info">
@@ -808,7 +873,7 @@ subkategorija{
                       </div>
                 </div>
         </div>
-        <div id="subkad_virs"><h3 class="subkategorija">Video reklāmas</h3>
+        <div id="subkad_virs"><div class="subkategorija">Video reklāmas</div>
         </div>
             <div class="izmeru_akordeons">
               <div id="virsrakstu_info">
@@ -860,7 +925,7 @@ subkategorija{
                       </div>
                 </div>
         </div>
-        <div id="subkad_virs"><h3 class="subkategorija">Zīmolu reklāmas produkti</h3>
+        <div id="subkad_virs"><div class="subkategorija">Zīmolu reklāmas produkti</div>
         </div>
             <div class="izmeru_akordeons">
               <div id="virsrakstu_info" style="width: 100%;">
@@ -907,7 +972,7 @@ subkategorija{
                       </div>
                 </div>
               </div><br>
-              <div id="subkad_virs"><h3 class="subkategorija">Lejupielādēt specifikācijas pdf formātā</h3>
+              <div id="subkad_virs"><div class="subkategorija">Lejupielādēt specifikācijas pdf formātā</div>
               </div>
               <ul style=" line-height: 2rem; padding-left: 40px; list-style: none;">
                 <li><a class="cenu_lapa" href="https://www.rigasvilni.lv/assets/images/PDF/Specs/Tehniska_specifikacija_2020.pdf" target="_blank">Reklāmas laukumu tehniskā specifikācija</a></li>
@@ -923,6 +988,57 @@ subkategorija{
                 <li><a class="cenu_lapa" href="https://www.rigasvilni.lv/assets/images/PDF/Specs/Technical-Specification-Video-ENG-2020.pdf" target="_blank">Video ad technical specification</a></li>
               </ul>
       </div></div>
+
+<div class="test">
+  <h1>Pure CSS Accordion <sup>2.0</sup></h1>
+<div class="row">
+  <div class="col">
+    <h2>Open <b>multiple</b></h2>
+    <div class="tabs">
+      <div class="tab">
+        <input type="checkbox" id="chck1">
+        <label class="tab-label" for="chck1">Item 1</label>
+        <div class="tab-content">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum, reiciendis!
+        </div>
+      </div>
+      <div class="tab">
+        <input type="checkbox" id="chck2">
+        <label class="tab-label" for="chck2">Item 2</label>
+        <div class="tab-content">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. A, in!
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <h2>Open <b>one</b></h2>
+    <div class="tabs">
+      <div class="tab">
+        <input type="radio" id="rd1" name="rd">
+        <label class="tab-label" for="rd1">Item 1</label>
+        <div class="tab-content">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, facilis.
+        </div>
+      </div>
+      <div class="tab">
+        <input type="radio" id="rd2" name="rd">
+        <label class="tab-label" for="rd2">Item 2</label>
+        <div class="tab-content">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil, aut.
+        </div>
+      </div>
+      <div class="tab">
+        <input type="radio" id="rd3" name="rd">
+        <label for="rd3" class="tab-close">Close others &times;</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
 </body>
 <footer>
   <script>
